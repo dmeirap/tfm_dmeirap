@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="lidar_benewake">
+    <link name="link">
+
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.19</mass>
+        <inertia>
+          <ixx>4.15e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.407e-6</iyy>
+          <iyz>0</iyz>
+          <izz>2.407e-6</izz>
+        </inertia>
+      </inertial>
+
+   <sensor name='lidar_benewake' type='ray'>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>320</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.15192</min_angle>
+            <max_angle>1.15192</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples> <!-- Con demasiadas el programa no carga-->
+            <min_angle>-0.15708</min_angle>
+            <max_angle>0.15708</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>4</max> 
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name='3D_laser' filename='libgazebo_ros_velodyne_laser.so'>
+        <topicName>/lidar_benewake_scan</topicName>
+        <frameName>lidar_benewake_link</frameName>
+        <cameraName>camera</cameraName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+		<gaussianNoise>0.008</gaussianNoise>
+      </plugin>
+      <always_on>1</always_on>
+      <update_rate>10</update_rate>
+      <visualize>1</visualize>
+    </sensor>
+
+    </link>
+  </model>
+</sdf>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="pointcloud_topics" default="[/lidar_benewake_scan]"/>
+    <arg name="camera_frame_id" default="lidar_benewake_link"/>
+    <arg name="start_pos_x" default="0.0" />
+    <arg name="start_pos_y" default="0.0" />
+    <arg name="start_pos_z" default="3.0" />
+    <arg name="world_file_name"    default="callejon_obs" />
+    <arg name="frame_id"    default="local_origin" />
+
+
+    <!-- Global Planner -->
+    <node name="global_planner_node" pkg="global_planner" type="global_planner_node" output="screen">
+
+        <param name="frame_id" type="string" value="$(arg frame_id)" />
+        <param name="camera_frame_id" type="string" value="/$(arg camera_frame_id)" />
+        <param name="start_pos_x" value="$(arg start_pos_x)" />
+        <param name="start_pos_y" value="$(arg start_pos_y)" />
+        <param name="start_pos_z" value="$(arg start_pos_z)" />
+        <param name="world_name" value="$(find avoidance)/sim/worlds/$(arg world_file_name).world" />
+        <rosparam param="pointcloud_topics" subst_value="True">$(arg pointcloud_topics)</rosparam>
+        <param name="robot_radius" value="0.5" /> 
+
+    </node>
+
+    <!-- OctoMap Server -->
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+        <param name="resolution" value="0.5" />
+        <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+        <param name="frame_id" type="string" value="$(arg frame_id)" />
+        <!-- maximum range to integrate (speedup!) -->
+        <param name="sensor_model/max_range" value="9.0" />
+        <param name="sensor_model/min" value="0.05" />
+        <param name="sensor_model/max" value="0.99" />
+        <param name="sensor_model/hit" value="0.9" />
+        <param name="sensor_model/miss" value="0.45" />
+        <param name="color/r" value="0.1" />
+        <param name="color/g" value="0.1" />
+        <param name="color/b" value="0.1" />
+        <param name="color/a" value="1.0" />
+        <!-- Filter out obstacles which are lower than 1 meter -->
+        <param name="occupancy_min_z" value="0.5" />
+        <param name="height_map" value="true" /> 
+        <param name="publish_free_space" value="false" />
+        <!-- data source to integrate (PointCloud2) -->
+        <remap from="cloud_in" to="/lidar_benewake_scan" /> 
+        </node>
+</launch>
+

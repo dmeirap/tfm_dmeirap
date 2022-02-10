@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version='1.5'>
+  <model name='iris_lidar_benewake'>
+
+    <include>
+      <uri>model://iris</uri>
+    </include> 
+
+    <include>
+      <uri>model://lidar_benewake</uri>
+      <pose>0 0 0.1 0 0 0</pose>
+    </include>
+    <joint name="benewake_joint" type="fixed">
+      <child>lidar_benewake::link</child>
+      <parent>iris::base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <upper>0</upper>
+          <lower>0</lower>
+        </limit>
+      </axis>
+    </joint>
+
+  </model>
+</sdf>
+
+

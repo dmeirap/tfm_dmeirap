@@ -1,0 +1,7 @@
+/usr/bin/ld: skipping incompatible /home/nvidia/Загрузки/SDK/CE30-C_ROS/libbw_ce30v2.0.so al buscar -lbw_ce30v2.0 
+
+cd ~/benewake_ce30c_ros_melodic/benewake_ce30c_sdk_linux/sources y make A continuación, mueva o sustituya el archivo libbw_ce30v2.0.so por uno nuevo en catkin_ws/src/benewake_c30c 
+
+catkin build
+
+source devel/setup.bash
