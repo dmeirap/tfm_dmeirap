@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="pointcloud_topics" default="[/camera/depth/points]"/>
-    <arg name="camera_frame_id" default="camera_link"/>
+    <arg name="pointcloud_topics" default="[/ce30c_output]"/>
+    <arg name="camera_frame_id" default="ce30_cloud"/>
     <arg name="start_pos_x" default="0.0" />
     <arg name="start_pos_y" default="0.0" />
     <arg name="start_pos_z" default="3.0" />
-    <arg name="frame_id"    default="local_origin" />
+    <arg name="frame_id"    default="map" />
 
 
     <!-- Global Planner -->
@@ -23,35 +23,11 @@
 
     <!-- OctoMap Server -->
     <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
-        <param name="resolution" value="0.5" />
+        <param name="resolution" value="0.15" />
         <param name="frame_id" type="string" value="$(arg frame_id)" />
-        <param name="sensor_model/max_range" value="9.0" />
-        <param name="sensor_model/min" value="0.05" />
-        <param name="sensor_model/max" value="0.99" />
-        <param name="sensor_model/hit" value="0.9" />
-        <param name="sensor_model/miss" value="0.45" />
-        <param name="color/r" value="0.1" />
-        <param name="color/g" value="0.1" />
-        <param name="color/b" value="0.1" />
-        <param name="color/a" value="1.0" />
-        <param name="occupancy_min_z" value="0.5" />
         <param name="height_map" value="true" /> 
         <param name="publish_free_space" value="false" />
         <!-- Sensor -->
             <remap from="cloud_in" to="/ce30c_output"/>
-            <remap from="scan" to="scan"/>
-            <rosparam>
-                transform_tolerance: 0.01
-                min_height: 0.0
-                max_height: 3.0
-                angle_min: -0.418879 # 66 - 90deg
-                angle_max: 2.72271   # +90 +66 deg
-                angle_increment: 0.0087 # M_PI/360.0
-                scan_time: 0.02
-                range_min: 0.2
-                range_max: 6.0
-                use_inf: true
-                concurrency_level: 1
-            </rosparam>
     </node>
 </launch>
