@@ -6,7 +6,7 @@ from mavsdk import System
 
 async def run():
     drone = System(mavsdk_server_address="localhost", port=50051)
-    await drone.connect(system_address="serial:///dev/ttyUSB0:921600")
+    await drone.connect()
 
     print("Esperando la conexion del dron...")
     async for state in drone.core.connection_state():
