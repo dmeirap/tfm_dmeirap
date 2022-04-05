@@ -1,5 +1,9 @@
 CONECTAR LA BATERIA Y LA PIXHAWK A LA JETSON XAVIER
 
+--- Conexion remota con Jetson --- 
+rbash
+sh nvidia-connect.sh
+
 --- TERMINAL 1 ---
 
 ~/catkin_ws/src/tfm/real/launch
