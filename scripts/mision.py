@@ -7,13 +7,14 @@ from mavsdk.mission import (MissionItem, MissionPlan)
 
 
 async def run():
-    drone = System()
-    await drone.connect(system_address="udp://:17873")
 
-    print("Waiting for drone to connect...")
+    drone = System(mavsdk_server_address="localhost", port=50051)
+    await drone.connect()
+
+    print("Esperando la conexion del dron...")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print("Drone discovered!")
+            print("Dron conectado!")
             break
 
     print_mission_progress_task = asyncio.ensure_future(
