@@ -5,7 +5,7 @@
     <arg name="camera_frame_id" default="ce30_cloud"/>
     <arg name="start_pos_x" default="0" />
     <arg name="start_pos_y" default="0" />
-    <arg name="start_pos_z" default="3.0" />
+    <arg name="start_pos_z" default="0.5" />
 
     <!-- Define a static transform from a camera internal frame to the fcu for every camera used -->
     <!-- Ros transformation -->
