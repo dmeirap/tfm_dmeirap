@@ -1,0 +1,2 @@
+TP-LINK
+  https://github.com/Mange/rtl8192eu-linux-driver 
