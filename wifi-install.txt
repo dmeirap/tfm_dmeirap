@@ -1,0 +1,9 @@
+
+	cd /usr/src/linux-headers-x.x
+	sudo make scripts
+	
+	cd catkin_ws/src/tfm/driver/
+	git clone https://github.com/brektrou/rtl8821CU.git
+	cd /rtl8821CU
+	make
+	sudo make install
