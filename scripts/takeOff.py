@@ -9,27 +9,27 @@ async def run():
     drone = System(mavsdk_server_address="localhost", port=50051)
     await drone.connect()
 
-    print("Esperando la conexion del dron...")
+    print("Waiting for the conexion")
     async for state in drone.core.connection_state():
         if state.is_connected:
-            print("Dron conectado!")
+            print("Dron conected")
             break
 
-    print("Esperando la posicion global del dron...")
+    print("Waiting for the global position")
     async for health in drone.telemetry.health():
         if health.is_global_position_ok:
-            print("Posicion global estimada OK")
+            print("Global position estimate")
             break
 
-    print("-- Arming")
+    print("Arming")
     await drone.action.arm()
     
-    print("-- Taking Off")
+    print("Taking Off")
     await drone.action.takeoff()
 
-    await asyncio.sleep(10)
+    await asyncio.sleep(15)
 
-    print("-- Landing")
+    print("Landing")
     await drone.action.land()
 
 
