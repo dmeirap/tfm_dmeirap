@@ -2,13 +2,13 @@
 <launch>
 
     <arg name="pointcloud_topics" default="[/ce30c_output]"/>
-    <arg name="camera_frame_id" default="ce30_cloud"/>
+    <arg name="camera_frame_id" default="lidar_benewake_scan"/>
     <arg name="start_pos_x" default="0" />
     <arg name="start_pos_y" default="0" />
     <arg name="start_pos_z" default="0.5" />
 
     <!-- Ros transformation -->
-    <node pkg="tf" type="static_transform_publisher" name="lidar_benewake" args="0 0 0 0 0 0 map $(arg camera_frame_id) 100" />
+    <node pkg="tf" type="static_transform_publisher" name="lidar_benewake" args="0 0 0 0 0 0 fcu $(arg camera_frame_id) 100" />
 
     <!-- Launch PX4 and mavros -->
     <include file="real_px4.launch" />
