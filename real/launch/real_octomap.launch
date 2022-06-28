@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="pointcloud_topics" default="[/ce30c_output]"/>
-    <arg name="camera_frame_id" default="lidar_benewake"/>
+    <arg name="camera_frame_id" default="lidar_benewake_scan"/>
     <arg name="start_pos_x" default="0.0" />
     <arg name="start_pos_y" default="0.0" />
     <arg name="start_pos_z" default="0.5" />
