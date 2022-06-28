@@ -28,6 +28,6 @@
 	<!-- Sensor Lidar Benewake-Ce30 -->
 	<node pkg="ce30c_driver" type="ce30_cloud" name="ce30_cloud" output="screen" >
 		<param name="IP" type="string" value="192.168.1.80" />
-		<param name="frame_id" type="string" value="lidar_benewake" />
+		<param name="frame_id" type="string" value="lidar_benewake_scan" />
 	</node>
 </launch>
