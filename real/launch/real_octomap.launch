@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="pointcloud_topics" default="[/ce30c_output]"/>
-    <arg name="camera_frame_id" default="ce30_cloud"/>
+    <arg name="camera_frame_id" default="lidar_benewake"/>
     <arg name="start_pos_x" default="0.0" />
     <arg name="start_pos_y" default="0.0" />
     <arg name="start_pos_z" default="0.5" />
-    <arg name="frame_id"    default="map" />
+    <arg name="frame_id"    default="local_origin" />
 
 
     <!-- Global Planner -->
@@ -26,8 +26,7 @@
         <param name="resolution" value="0.15" />
         <param name="frame_id" type="string" value="$(arg frame_id)" />
         <param name="height_map" value="true" />
-	<param name="pointcloud_min_z" value="0.1" /> 
-	<!--param name="pointcloud_max_z" value="3.0" /--> 
+	<param name="occupancy_min_z" value="0.1" />  
         <param name="publish_free_space" value="false" />
         <!-- Sensor -->
             <remap from="cloud_in" to="/ce30c_output"/>
